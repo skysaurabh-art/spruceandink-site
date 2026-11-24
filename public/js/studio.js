@@ -8,33 +8,33 @@ const $ = (id) => document.getElementById(id);
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------------- pricing + Stripe ---------------- */
-const SALE = 0.25; /* 25% off everything. Set to 0 to end the sale. */
+const SALE = 0.10; /* 10% off everything. Set to 0 to end the sale. */
 const LINK = {
-  tumbler20: "https://buy.stripe.com/fZueV63nP2bE3cvcwDfQI00",
-  tumbler30: "https://buy.stripe.com/5kQ5kw8I9g2u8wP2W3fQI0h",
-  tumbler40: "https://buy.stripe.com/14AcMY4rTdUmbJ168ffQI01",
-  bottle17: "https://buy.stripe.com/00wdR2f6x9E614n68ffQI02",
-  bottle25: "https://buy.stripe.com/3cIcMY8I98A24gz54bfQI0i",
-  mug11: "https://buy.stripe.com/bJe7sE4rTg2u8wPgMTfQI03",
-  mug15: "https://buy.stripe.com/dRmcMYaQh9E614ngMTfQI0j",
-  glass: "https://buy.stripe.com/aFaaEQ3nP03w4gzeELfQI04",
-  block46: "https://buy.stripe.com/14AbIU1fH2bE28r1RZfQI0k",
-  block57: "https://buy.stripe.com/00w7sEgaB03w00jaovfQI05",
-  block810: "https://buy.stripe.com/4gMbIU1fH7vYeVd407fQI0l",
-  ornament: "https://buy.stripe.com/aFa3co7E52bEeVdgMTfQI06",
-  coasters4: "https://buy.stripe.com/4gM00caQh6rU28rcwDfQI07",
-  coasters6: "https://buy.stripe.com/4gM00ce2tbMedR99krfQI0m",
-  panel68: "https://buy.stripe.com/aFa6oAcYpg2uaEXcwDfQI08",
-  panel810: "https://buy.stripe.com/aFa9AM7E59E67sL68ffQI0n",
-  tee: "https://buy.stripe.com/9B600c5vX9E69ATgMTfQI09",
-  hoodie: "https://buy.stripe.com/9B66oA1fHg2u7sL0NVfQI0a",
-  tote: "https://buy.stripe.com/fZu00c5vX8A29AT68ffQI0b",
-  apron: "https://buy.stripe.com/28E7sEaQhcQieVdbszfQI0c",
-  keychain: "https://buy.stripe.com/9B65kw6A15nQ14n7cjfQI0d",
-  magnet: "https://buy.stripe.com/aFa00c5vX2bE7sLaovfQI0e",
-  phone: "https://buy.stripe.com/00w8wI6A1aIadR9dAHfQI0f",
-  plate82: "https://buy.stripe.com/6oU6oAf6xg2u5kD0NVfQI0g",
-  plate103: "https://buy.stripe.com/6oU14gbUldUmcN5gMTfQI0o"
+  tumbler20: "https://buy.stripe.com/7sY4gs4rT7vY7sL407fQI0p",
+  tumbler30: "https://buy.stripe.com/bJe14g3nPg2ueVd407fQI0G",
+  tumbler40: "https://buy.stripe.com/fZu5kwgaB03w5kDbszfQI0q",
+  bottle17: "https://buy.stripe.com/00w6oA9Mdg2u5kDgMTfQI0r",
+  bottle25: "https://buy.stripe.com/00w8wI3nP9E66oH2W3fQI0H",
+  mug11: "https://buy.stripe.com/fZubIUbUl9E64gz0NVfQI0s",
+  mug15: "https://buy.stripe.com/4gM00c1fHdUmcN5bszfQI0I",
+  glass: "https://buy.stripe.com/3cI3cocYpg2u3cv8gnfQI0t",
+  block46: "https://buy.stripe.com/8x200c8I9aIa14n1RZfQI0J",
+  block57: "https://buy.stripe.com/fZu9AMf6xeYqaEX9krfQI0u",
+  block810: "https://buy.stripe.com/eVq9AMgaB8A2dR9fIPfQI0K",
+  ornament: "https://buy.stripe.com/bJefZa8I93fI00j0NVfQI0v",
+  coasters4: "https://buy.stripe.com/aFa8wIaQh8A2eVdbszfQI0w",
+  coasters6: "https://buy.stripe.com/bJedR2cYp6rU28r54bfQI0L",
+  panel68: "https://buy.stripe.com/3cI8wI0bD3fI14n9krfQI0x",
+  panel810: "https://buy.stripe.com/00wfZa5vXaIaeVdcwDfQI0M",
+  tee: "https://buy.stripe.com/9B6dR2aQh7vYcN5gMTfQI0y",
+  hoodie: "https://buy.stripe.com/fZu4gs8I95nQ00jbszfQI0z",
+  tote: "https://buy.stripe.com/8x214g5vXcQi9AT2W3fQI0A",
+  apron: "https://buy.stripe.com/28E9AMgaBeYq6oHbszfQI0B",
+  keychain: "https://buy.stripe.com/cNi8wI6A15nQ14ngMTfQI0C",
+  magnet: "https://buy.stripe.com/dRmfZa2jL17AfZhcwDfQI0D",
+  phone: "https://buy.stripe.com/00wcMY1fH9E68wPgMTfQI0E",
+  plate82: "https://buy.stripe.com/14A7sE9MdaIa14n9krfQI0F",
+  plate103: "https://buy.stripe.com/5kQ9AMbUl4jM3cv9krfQI0N"
 };
 
 /* ---------------- finishes ---------------- */
