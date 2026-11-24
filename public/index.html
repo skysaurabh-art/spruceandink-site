@@ -9,7 +9,7 @@
 <meta name="description" content="Spruce & Ink is a custom printing studio in Caledon, Ontario. Full-colour photos, names and logos on tumblers, mugs, acrylic, wood, shirts and keepsakes. Free local delivery on orders of $50+, and free GTA-wide delivery on $150+.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap">
 <style>
 /* Layout: a press sheet. Process colours (cyan, magenta, yellow) run through every band like a colour bar, with spruce and ink as the brand's own two inks. */
 :root {
@@ -369,6 +369,41 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
 .pay-opt input:focus-visible + span { outline: 3px solid var(--magenta); outline-offset: 2px; }
 
 /* Design studio (3D) */
+/* Studio v4: editor + options */
+.stage-box { position: relative; width: 100%; max-width: 480px; display: grid; place-items: center; }
+.tryon-stage canvas#to-edit { width: 100%; max-width: 480px; aspect-ratio: 4 / 5; display: block; touch-action: none; cursor: grab; border-radius: 14px; }
+.view-toggle { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+.vt { font: 600 14px/1 var(--body); color: var(--muted); background: transparent; border: 0; padding: 9px 16px; border-radius: 999px; cursor: pointer; }
+.vt[aria-selected="true"] { background: var(--magenta); color: #ffffff; }
+.vt:focus-visible, .seg button:focus-visible, .chip-btn:focus-visible { outline: 3px solid var(--magenta); outline-offset: 2px; }
+.edit-bar { width: 100%; max-width: 480px; display: grid; gap: 10px; }
+.edit-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; }
+.seg { display: inline-flex; gap: 3px; padding: 3px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
+.seg button { font: 600 13px/1 var(--body); color: var(--muted); background: transparent; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.ed-size { display: flex; align-items: center; gap: 12px; font: 600 13px/1 var(--body); color: var(--fg); }
+.ed-size input { flex: 1; }
+.chip-btn { font: 500 13px/1 var(--body); color: var(--fg); background: var(--card); border: 1px solid var(--line); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+.chip-btn:hover { border-color: var(--fg); }
+.ed-repeat { font-size: 13px; }
+.edit-hint { margin: 0; font-size: 12.5px; color: var(--muted); text-align: center; }
+.model-select { width: 100%; font: 500 16px/1.3 var(--body); padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--card); color: var(--fg); }
+.ctl-help { margin: 8px 0 0; font-size: 13px; color: var(--muted); }
+.ctl-warn { margin: 8px 0 0; font-size: 13px; color: #b45309; }
+.two-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.two-inputs > div { display: grid; gap: 8px; min-width: 0; }
+.name-input.small { font-size: 18px; }
+.f-classic { font-family: "Playfair Display", Georgia, serif; font-weight: 700; }
+.opt-custom input[type="color"] { width: 18px; height: 18px; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; margin-right: 6px; vertical-align: -3px; }
+.step-gap { margin-top: 18px; }
+.edit-cta { justify-self: start; }
+@media (max-width: 880px) {
+  .tryon-stage canvas#to-edit { height: 34vh; width: auto; max-width: 100%; }
+  .tryon-stage.editing { position: static; }
+  .tryon-stage.editing canvas#to-edit { height: auto; width: 100%; }
+  .two-inputs { grid-template-columns: 1fr; }
+}
+
 .step-head { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; }
 .step-head h3 { font: 800 22px/1.2 var(--display); margin: 0; }
 .step-num { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--magenta); color: #ffffff; font: 800 17px/1 var(--display); }
@@ -383,7 +418,7 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
 .ctl-opt { text-transform: none; letter-spacing: 0; font-family: var(--body); }
 .studio .studio-grid { align-items: start; }
 .tryon-stage { padding: 52px 12px 18px; --stage-glow: var(--t-cyan); position: sticky; top: 20px; z-index: 2; }
-.tryon-stage canvas { width: 100%; max-width: 460px; aspect-ratio: 4 / 5; display: block; cursor: grab; touch-action: pan-y; }
+.tryon-stage canvas { width: 100%; max-width: 480px; aspect-ratio: 4 / 5; display: block; cursor: grab; touch-action: pan-y; border-radius: 14px; box-shadow: 0 18px 40px -26px rgba(20, 24, 31, 0.45); }
 .tryon-stage canvas:active { cursor: grabbing; }
 .to-views { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
 .to-view { font: 500 13px/1 var(--body); color: var(--muted); background: transparent; border: 0; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
@@ -557,13 +592,13 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
     <div class="wrap">
       <div class="sent-banner" id="sent-banner" role="status" hidden>
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>
-        <div><strong>Thanks! Your design is on its way to us.</strong> We'll reply within 24 hours with your price and a proof. Nothing is printed or charged until you approve it.</div>
+        <div><strong>Thanks! Your design is on its way to us.</strong> We'll reply within 24 hours with a proof. Nothing is printed until you approve it.</div>
         <button type="button" class="sent-close" id="sent-close" aria-label="Close">×</button>
       </div>
       <div class="section-head">
         <p class="eyebrow">Design studio</p>
         <h2>Design yours and see it in 3D</h2>
-        <p class="lede">Three quick steps: pick a product, add your photo or one of our designs, then send it to us. You'll get a price and a proof before anything is made.</p>
+        <p class="lede">Pick a product and size, add your photo, then drag and resize it until it looks right. What you see is what we print.</p>
       </div>
 
       <div class="step-head"><span class="step-num">1</span><h3>Pick a product</h3></div>
@@ -577,19 +612,82 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
 
       <div class="studio-grid">
         <div class="stage tryon-stage" id="to-stage">
-          <span class="stage-tag"><i aria-hidden="true"></i>3D · drag to turn</span>
-          <canvas id="to-canvas" role="img" aria-label="3D preview of your product with your design"></canvas>
-          <div class="to-views" role="group" aria-label="View">
+          <div class="view-toggle" role="tablist" aria-label="Preview mode">
+            <button type="button" role="tab" class="vt" data-mode="3d" aria-selected="true">3D view</button>
+            <button type="button" role="tab" class="vt" data-mode="edit" aria-selected="false">Edit layout</button>
+          </div>
+          <div class="stage-box">
+            <canvas id="to-canvas" role="img" aria-label="3D preview of your product with your design"></canvas>
+            <canvas id="to-edit" hidden aria-label="Print layout. Drag your photo or text to move it. Pinch or scroll to resize."></canvas>
+          </div>
+          <div class="to-views" id="to-views" role="group" aria-label="Turn the product">
             <button type="button" class="to-view" data-view="front">Front</button>
             <button type="button" class="to-view" data-view="back">Back</button>
             <button type="button" class="to-view" data-view="spin" aria-pressed="true">Turn</button>
           </div>
-          <p class="stage-cap" id="to-cap" aria-live="polite">20oz tumbler · Black</p>
+          <div class="edit-bar" id="edit-bar" hidden>
+            <div class="edit-row">
+              <div class="seg" id="ed-target" role="group" aria-label="What to adjust">
+                <button type="button" data-t="img" aria-pressed="true">Photo</button>
+                <button type="button" data-t="text" aria-pressed="false">Text</button>
+              </div>
+              <div class="seg" id="ed-face" role="group" aria-label="Side" hidden>
+                <button type="button" data-f="front" aria-pressed="true">Front</button>
+                <button type="button" data-f="back" aria-pressed="false">Back</button>
+              </div>
+            </div>
+            <label class="ed-size"><span>Size</span><input type="range" id="ed-scale" min="10" max="400" value="100" aria-label="Size"></label>
+            <div class="edit-row ed-btns">
+              <button type="button" class="chip-btn" data-act="fill">Fill</button>
+              <button type="button" class="chip-btn" data-act="fit">Fit</button>
+              <button type="button" class="chip-btn" data-act="rotate">Rotate</button>
+              <button type="button" class="chip-btn" data-act="center">Centre</button>
+              <button type="button" class="chip-btn" data-act="reset">Reset</button>
+              <label class="to-check ed-repeat" id="ed-repeat-wrap" hidden><input type="checkbox" id="ed-repeat"> Repeat pattern</label>
+            </div>
+            <p class="edit-hint">Drag to move. Pinch, scroll or use the slider to resize. Dashed line = safe print area.</p>
+          </div>
+          <p class="stage-cap" id="to-cap" aria-live="polite"></p>
           <p class="to-fallback" id="to-fallback" hidden>Your browser can't show the 3D preview. You can still send us your design below and we'll email you a proof.</p>
         </div>
 
         <div class="controls step2" id="to-form">
-          <div class="step-head"><span class="step-num">2</span><h3>Make it yours</h3></div>
+          <div class="step-head"><span class="step-num">2</span><h3>Choose options</h3></div>
+          <fieldset class="ctl" id="to-sizes-ctl">
+            <legend class="ctl-label" id="to-sizes-label">Size</legend>
+            <div class="opts" id="to-sizes"></div>
+          </fieldset>
+          <div class="ctl" id="to-model-ctl" hidden>
+            <label class="ctl-label" for="to-model">Phone model</label>
+            <select id="to-model" class="model-select"></select>
+            <p class="ctl-help" id="to-model-help" hidden>Tell us your exact model in the notes and we'll confirm it fits.</p>
+          </div>
+          <fieldset class="ctl" id="to-shapes-ctl" hidden>
+            <legend class="ctl-label">Shape</legend>
+            <div class="opts" id="to-shapes"></div>
+          </fieldset>
+          <fieldset class="ctl" id="to-orient-ctl" hidden>
+            <legend class="ctl-label">Orientation</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="to-orient" value="land" checked><span>Landscape</span></label>
+              <label class="opt"><input type="radio" name="to-orient" value="port"><span>Portrait</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="ctl">
+            <legend class="ctl-label" id="to-finish-label">Colour</legend>
+            <div class="opts" id="to-finishes"></div>
+          </fieldset>
+          <fieldset class="ctl" id="to-wear-ctl" hidden>
+            <legend class="ctl-label">Shirt size</legend>
+            <div class="opts" id="to-wear"></div>
+            <p class="ctl-help">Ordering several sizes? Pick one here and list the rest in the notes.</p>
+          </fieldset>
+          <fieldset class="ctl" id="to-cover-ctl">
+            <legend class="ctl-label" id="to-cover-label">Print coverage</legend>
+            <div class="opts" id="to-covers"></div>
+          </fieldset>
+
+          <div class="step-head step-gap"><span class="step-num">3</span><h3>Add your design</h3></div>
           <div class="ctl">
             <span class="ctl-label">Your photo or logo</span>
             <label class="to-drop" id="to-drop">
@@ -603,53 +701,36 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
               <button type="button" class="to-link" id="to-remove">Remove image</button>
               <label class="to-check"><input type="checkbox" id="to-cutout"> Remove white background (logos)</label>
             </div>
-            <div class="to-size" id="to-size-ctl" hidden>
-              <label class="ctl-label" for="to-size">Image size</label>
-              <input type="range" id="to-size" min="40" max="100" value="88">
-              <label class="ctl-label to-sub" for="to-pos">Move up or down</label>
-              <input type="range" id="to-pos" min="-30" max="30" value="0">
-            </div>
+            <p class="ctl-warn" id="to-res-warn" hidden></p>
           </div>
           <fieldset class="ctl">
-            <legend class="ctl-label">Or pick one of our designs</legend>
+            <legend class="ctl-label">Or start from one of our designs</legend>
             <div class="opts">
-              <label class="opt" id="to-photo-opt" hidden><input type="radio" name="to-design" value="photo"><span>My photo</span></label>
+              <label class="opt" id="to-photo-opt"><input type="radio" name="to-design" value="photo"><span>My photo</span></label>
               <label class="opt"><input type="radio" name="to-design" value="mountains" checked><span>Mountains</span></label>
               <label class="opt"><input type="radio" name="to-design" value="flowers"><span>Wildflowers</span></label>
               <label class="opt"><input type="radio" name="to-design" value="sunset"><span>Retro sunset</span></label>
               <label class="opt"><input type="radio" name="to-design" value="monogram"><span>Monogram</span></label>
-              <label class="opt"><input type="radio" name="to-design" value="name"><span>Name only</span></label>
+              <label class="opt"><input type="radio" name="to-design" value="name"><span>Text only</span></label>
             </div>
           </fieldset>
-          <div class="ctl">
-            <label class="ctl-label" for="to-name">Name or text <span class="ctl-opt">(leave blank for none)</span></label>
-            <input class="name-input" id="to-name" type="text" maxlength="24" value="Sarah" autocomplete="off" spellcheck="false">
+          <div class="ctl two-inputs">
+            <div>
+              <label class="ctl-label" for="to-name">Main text <span class="ctl-opt">(optional)</span></label>
+              <input class="name-input" id="to-name" type="text" maxlength="28" value="Sarah" autocomplete="off" spellcheck="false">
+            </div>
+            <div>
+              <label class="ctl-label" for="to-name2">Second line <span class="ctl-opt">(date, team, message)</span></label>
+              <input class="name-input small" id="to-name2" type="text" maxlength="40" value="" placeholder="Est. 2024" autocomplete="off" spellcheck="false">
+            </div>
           </div>
           <fieldset class="ctl">
             <legend class="ctl-label">Lettering</legend>
             <div class="opts">
               <label class="opt"><input type="radio" name="to-font" value="bold" checked><span class="f-bold">Bold</span></label>
               <label class="opt"><input type="radio" name="to-font" value="script"><span class="f-script">Script</span></label>
+              <label class="opt"><input type="radio" name="to-font" value="classic"><span class="f-classic">Classic</span></label>
               <label class="opt"><input type="radio" name="to-font" value="type"><span class="f-type">Typewriter</span></label>
-            </div>
-          </fieldset>
-          <fieldset class="ctl">
-            <legend class="ctl-label" id="to-finish-label">Colour</legend>
-            <div class="opts" id="to-finishes"></div>
-          </fieldset>
-          <fieldset class="ctl" id="to-orient-ctl" hidden>
-            <legend class="ctl-label">Shape</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="to-orient" value="land" checked><span>Landscape</span></label>
-              <label class="opt"><input type="radio" name="to-orient" value="port"><span>Portrait</span></label>
-            </div>
-          </fieldset>
-          <fieldset class="ctl" id="to-layout-ctl">
-            <legend class="ctl-label">Layout</legend>
-            <div class="opts">
-              <label class="opt"><input type="radio" name="to-layout" value="front" checked><span>Front</span></label>
-              <label class="opt"><input type="radio" name="to-layout" value="frontback"><span>Design front, name back</span></label>
-              <label class="opt" id="to-wrap-opt"><input type="radio" name="to-layout" value="wrap"><span>Full wrap</span></label>
             </div>
           </fieldset>
           <fieldset class="ctl">
@@ -658,20 +739,23 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
               <label class="opt"><input type="radio" name="to-ink" value="auto" checked><span>Auto</span></label>
               <label class="opt"><input type="radio" name="to-ink" value="#ffffff"><span><i class="sw" style="background:#ffffff"></i>White</span></label>
               <label class="opt"><input type="radio" name="to-ink" value="#14181f"><span><i class="sw" style="background:#14181f"></i>Black</span></label>
+              <label class="opt"><input type="radio" name="to-ink" value="#c9a24b"><span><i class="sw" style="background:#c9a24b"></i>Gold tone</span></label>
               <label class="opt"><input type="radio" name="to-ink" value="#1e6b4f"><span><i class="sw" style="background:#1e6b4f"></i>Spruce</span></label>
               <label class="opt"><input type="radio" name="to-ink" value="#e6007e"><span><i class="sw" style="background:#e6007e"></i>Pink</span></label>
+              <label class="opt opt-custom"><input type="radio" name="to-ink" value="custom"><span><input type="color" id="to-ink-custom" value="#2b6cb0" aria-label="Pick any colour">Any colour</span></label>
             </div>
           </fieldset>
+          <button type="button" class="btn btn-dice edit-cta" id="to-edit-cta">Move or resize your design</button>
           <a class="btn btn-primary next-btn" href="#send">Next: send it to us ↓</a>
         </div>
       </div>
 
       <div class="send" id="send">
-        <div class="step-head"><span class="step-num">3</span><h3>Send it to us</h3></div>
+        <div class="step-head"><span class="step-num">4</span><h3>Send it to us</h3></div>
         <div class="send-grid">
           <figure class="send-preview">
             <img id="send-thumb" alt="Preview of your design" width="400" height="500">
-            <figcaption id="send-sum">20oz tumbler · Black · Mountains · "Sarah"</figcaption>
+            <figcaption id="send-sum"></figcaption>
           </figure>
           <form id="send-form" action="https://formsubmit.co/hello@spruceandink.ca" method="POST" enctype="multipart/form-data" novalidate>
             <input type="hidden" name="_subject" id="sf-subject" value="New design from the website">
@@ -680,17 +764,19 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
             <input type="hidden" name="_next" id="sf-next" value="https://spruceandink.ca/?sent=1#studio">
             <input type="hidden" name="order_ref" id="sf-ref">
             <input type="hidden" name="price" id="sf-pricefield">
-            <input type="hidden" name="_autoresponse" value="Thanks for sending your design to Spruce & Ink! We've got it and will reply within 24 hours with your price and a proof. Nothing is printed or charged until you approve it. Questions? Just reply to this email or call 437-247-5669.">
+            <input type="hidden" name="_autoresponse" value="Thanks for sending your design to Spruce & Ink! We've got it and will reply within 24 hours with a proof. Nothing is printed until you approve it. Questions? Just reply to this email or call 437-247-5669.">
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" name="product" id="sf-product">
+            <input type="hidden" name="size_or_model" id="sf-variant">
             <input type="hidden" name="colour_or_finish" id="sf-finish">
+            <input type="hidden" name="print_coverage" id="sf-cover">
             <input type="hidden" name="design" id="sf-design">
             <input type="hidden" name="text_on_item" id="sf-text">
             <input type="hidden" name="lettering" id="sf-font">
             <input type="hidden" name="text_colour" id="sf-ink">
-            <input type="hidden" name="layout" id="sf-layout">
             <input type="file" name="attachment_preview" id="sf-file-preview" class="hp" tabindex="-1" aria-hidden="true">
             <input type="file" name="attachment_artwork" id="sf-file-art" class="hp" tabindex="-1" aria-hidden="true">
+            <input type="file" name="attachment_artwork_back" id="sf-file-art2" class="hp" tabindex="-1" aria-hidden="true">
             <input type="file" name="attachment_customer_image" id="sf-file-photo" class="hp" tabindex="-1" aria-hidden="true">
             <div class="field-row">
               <div class="field">
@@ -728,13 +814,13 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
             </div>
             <div class="field">
               <label for="sf-notes">Anything else? <span class="opt">(optional)</span></label>
-              <textarea id="sf-notes" name="notes" placeholder="Different names on each, a date to add, colours you'd like, a gift message…"></textarea>
+              <textarea id="sf-notes" name="notes" placeholder="Different names on each, more shirt sizes, a gift message…"></textarea>
             </div>
             <div class="price-box" aria-live="polite">
-              <span class="price-now" id="sf-now">$22.50</span>
-              <s id="sf-was">$30</s>
+              <span class="price-now" id="sf-now"></span>
+              <s id="sf-was"></s>
               <span class="price-tag">25% off</span>
-              <span class="price-each" id="sf-each">each · total $22.50</span>
+              <span class="price-each" id="sf-each"></span>
               <span class="price-note" id="sf-pnote" hidden></span>
             </div>
             <fieldset class="pay-choice" id="sf-pay" hidden>
@@ -744,7 +830,7 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
             </fieldset>
             <p class="form-status error" id="sf-error" role="alert" hidden></p>
             <button class="btn btn-primary send-btn" type="submit" id="sf-submit">Send my design</button>
-            <p class="form-note">Your design, your photo and the 3D preview are emailed straight to us with your details. We reply within 24 hours with a price and a proof.</p>
+            <p class="form-note">Your design, your photo and the 3D preview are emailed straight to us with your details. We reply within 24 hours with a proof.</p>
           </form>
         </div>
       </div>
@@ -1432,810 +1518,7 @@ details p { margin-top: 10px; color: var(--muted); max-width: 65ch; }
   });
 })();
 </script>
-<script src="js/three.min.js"></script>
-<script>
-(function () {
-  var root = document.getElementById("studio");
-  var cvs = document.getElementById("to-canvas");
-  if (!root || !cvs) return;
-  var $ = function (id) { return document.getElementById(id); };
-  var cap = $("to-cap"), fileIn = $("to-file"), drop = $("to-drop"), fileLabel = $("to-file-label");
-  var fileRow = $("to-file-row"), sizeCtl = $("to-size-ctl"), sizeIn = $("to-size"), posIn = $("to-pos");
-  var nameIn = $("to-name"), cutIn = $("to-cutout"), wrapOpt = $("to-wrap-opt"), photoOpt = $("to-photo-opt");
-  var prodBox = $("to-products"), finBox = $("to-finishes");
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function val(n) { var el = root.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ""; }
-  function setVal(n, v) { var el = root.querySelector('input[name="' + n + '"][value="' + v + '"]'); if (el) el.checked = true; return !!el; }
-
-  /* Thank-you banner after the form redirects back */
-  if (/[?&]sent=1/.test(location.search)) {
-    $("sent-banner").hidden = false;
-    try { history.replaceState(null, "", location.pathname + "#studio"); } catch (e) {}
-  }
-  $("sent-close").addEventListener("click", function () { $("sent-banner").hidden = true; });
-
-  /* ---------- finishes ---------- */
-  var F = {
-    black: { label: "Black", c: "#1b1e24", r: 0.55, m: 0.12, dark: true },
-    white: { label: "White", c: "#eef0f3", r: 0.5, m: 0.04 },
-    navy: { label: "Navy", c: "#1f2d4f", r: 0.55, m: 0.12, dark: true },
-    blush: { label: "Blush", c: "#f0bfc9", r: 0.55, m: 0.06 },
-    sage: { label: "Sage", c: "#a9c2a3", r: 0.55, m: 0.06 },
-    steel: { label: "Silver", c: "#cfd3d9", r: 0.26, m: 0.95 },
-    gwhite: { label: "White", c: "#f6f6f4", r: 0.14, m: 0 },
-    gblack: { label: "Black", c: "#1c1d20", r: 0.16, m: 0, dark: true },
-    clear: { label: "Clear", glass: true },
-    frosted: { label: "Frosted", glass: true, frost: true },
-    wood: { label: "Wood", wood: true, c: "#ffffff", r: 0.7 },
-    ceramic: { label: "White ceramic", c: "#f5f5f3", r: 0.12, m: 0 },
-    slate: { label: "Slate", slate: true, c: "#ffffff", r: 0.85, dark: true },
-    glassp: { label: "Glass", glass: true },
-    pwhite: { label: "White", c: "#f2f2f0", r: 0.35, m: 0 },
-    pblack: { label: "Black", c: "#1c1d20", r: 0.35, m: 0, dark: true },
-    fwhite: { label: "White", c: "#f3f3f1", r: 0.95 },
-    fblack: { label: "Black", c: "#1e1f22", r: 0.95, dark: true },
-    heather: { label: "Heather grey", c: "#a3a7ad", r: 0.95 },
-    fnavy: { label: "Navy", c: "#1f2a44", r: 0.95, dark: true },
-    fsage: { label: "Sage", c: "#9fb79a", r: 0.95 },
-    natural: { label: "Natural", c: "#e6dbc3", r: 0.95 },
-    mwhite: { label: "Gloss white", c: "#f7f7f5", r: 0.2, m: 0 }
-  };
-  var CAN = ["black", "white", "navy", "blush", "sage", "steel"];
-
-  /* ---------- shapes (inches, centred) ---------- */
-  function rrect(w, h, r) {
-    var s = new THREE.Shape(), x = -w / 2, y = -h / 2;
-    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r);
-    s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r);
-    s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y);
-    return s;
-  }
-  function circ(r, hole) {
-    var s = new THREE.Shape(); s.absarc(0, 0, r, 0, Math.PI * 2, false);
-    if (hole) { var h = new THREE.Path(); h.absarc(hole[0], hole[1], hole[2], 0, Math.PI * 2, true); s.holes.push(h); }
-    return s;
-  }
-  function slateShape(w, h) {
-    var s = new THREE.Shape(), pts = [], seed = 7;
-    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
-    var n = 64;
-    for (var i = 0; i < n; i++) {
-      var t = i / n, x, y, per = 2 * (w + h), d = t * per;
-      if (d < w) { x = -w / 2 + d; y = -h / 2; }
-      else if (d < w + h) { x = w / 2; y = -h / 2 + (d - w); }
-      else if (d < 2 * w + h) { x = w / 2 - (d - w - h); y = h / 2; }
-      else { x = -w / 2; y = h / 2 - (d - 2 * w - h); }
-      var j = (rnd() - 0.5) * 0.28;
-      if (Math.abs(y) >= h / 2 - 1e-6) y += j * Math.sign(y); else x += j * Math.sign(x);
-      pts.push([x, y]);
-    }
-    s.moveTo(pts[0][0], pts[0][1]);
-    for (var k = 1; k < pts.length; k++) s.lineTo(pts[k][0], pts[k][1]);
-    s.closePath();
-    return s;
-  }
-  function pathShape(cmds) {
-    var s = new THREE.Shape();
-    cmds.forEach(function (c) { s[c[0]].apply(s, c.slice(1)); });
-    return s;
-  }
-  var teeCmds = [["moveTo", -3.6, 13], ["quadraticCurveTo", 0, 10.6, 3.6, 13], ["lineTo", 9.6, 12], ["lineTo", 14.6, 6.4], ["lineTo", 11.3, 3.6], ["lineTo", 9.9, 5.6], ["lineTo", 10.1, -15], ["lineTo", -10.1, -15], ["lineTo", -9.9, 5.6], ["lineTo", -11.3, 3.6], ["lineTo", -14.6, 6.4], ["lineTo", -9.6, 12], ["lineTo", -3.6, 13]];
-  var hoodCmds = [["moveTo", -3.6, 13], ["quadraticCurveTo", 0, 11.2, 3.6, 13], ["lineTo", 9.8, 11.6], ["quadraticCurveTo", 13.6, 8, 15.4, -10.2], ["lineTo", 12.3, -11.2], ["lineTo", 10.3, 1.5], ["lineTo", 10.6, -15], ["lineTo", -10.6, -15], ["lineTo", -10.3, 1.5], ["lineTo", -12.3, -11.2], ["lineTo", -15.4, -10.2], ["quadraticCurveTo", -13.6, 8, -9.8, 11.6], ["lineTo", -3.6, 13]];
-  var hoodTop = [["moveTo", -6.2, 12.2], ["quadraticCurveTo", -6.8, 19.8, 0, 20.2], ["quadraticCurveTo", 6.8, 19.8, 6.2, 12.2], ["quadraticCurveTo", 0, 10.4, -6.2, 12.2]];
-  var pocket = [["moveTo", -6.4, -5], ["lineTo", 6.4, -5], ["lineTo", 8, -12.5], ["lineTo", -8, -12.5], ["lineTo", -6.4, -5]];
-  var apronCmds = [["moveTo", -5, 14], ["lineTo", 5, 14], ["quadraticCurveTo", 6, 4, 11, 2], ["lineTo", 11, -16], ["lineTo", -11, -16], ["lineTo", -11, 2], ["quadraticCurveTo", -6, 4, -5, 14]];
-
-  /* ---------- products ---------- */
-  var P = {
-    tumbler: { cat: "drink", label: "20oz tumbler", kind: "lathe", fin: CAN, def: "black", wrap: true, panel: 0.38, zone: [0.75, 6.95],
-      body: [[0, 0], [1.22, 0], [1.3, 0.04], [1.34, 0.14], [1.355, 0.32], [1.455, 7.5], [1.47, 7.6], [0, 7.6]],
-      lid: { pts: [[1.42, 7.5], [1.49, 7.58], [1.49, 7.92], [1.44, 8.02], [0.3, 8.06], [0, 8.06]], c: "#24272d", r: 0.35, m: 0.05 },
-      straw: { x: 0.45, y0: 7.2, y1: 10.1, rad: 0.12 } },
-    handle: { cat: "drink", label: "40oz tumbler with handle", kind: "lathe", fin: CAN, def: "sage", wrap: false, panel: 0.34, zone: [3.15, 8.85],
-      body: [[0, 0], [1.2, 0], [1.28, 0.06], [1.31, 0.25], [1.32, 1.9], [1.45, 2.2], [1.8, 2.5], [1.93, 2.75], [1.96, 3.0], [2.02, 9.3], [2.04, 9.42], [0, 9.42]],
-      lid: { pts: [[1.98, 9.3], [2.09, 9.42], [2.09, 10.0], [2.0, 10.15], [0.4, 10.2], [0, 10.2]], c: "#24272d", r: 0.35, m: 0.05 },
-      straw: { x: 0.7, y0: 9.6, y1: 12.4, rad: 0.15 },
-      handle: { pts: [[1.98, 8.55], [2.75, 8.5], [3.2, 7.9], [3.28, 6.0], [3.2, 4.3], [2.75, 3.75], [1.97, 3.7]], rad: 0.27 } },
-    bottle: { cat: "drink", label: "17oz water bottle", kind: "lathe", fin: CAN, def: "white", wrap: true, panel: 0.38, zone: [0.75, 5.9],
-      body: [[0, 0], [1.24, 0], [1.33, 0.06], [1.37, 0.22], [1.38, 0.45], [1.38, 6.15], [1.33, 6.6], [1.15, 7.15], [0.9, 7.55], [0.74, 7.8], [0.72, 8.15], [0, 8.15]],
-      lid: { pts: [[0.74, 8.0], [0.79, 8.08], [0.79, 9.2], [0.74, 9.3], [0, 9.32]], c: "#cfd3d9", r: 0.25, m: 0.95 } },
-    mug: { cat: "drink", label: "11oz mug", kind: "lathe", fin: ["gwhite", "gblack"], def: "gwhite", wrap: false, panel: 0.3, zone: [0.45, 3.45],
-      body: [[0, 0], [1.4, 0], [1.52, 0.05], [1.58, 0.2], [1.6, 0.4], [1.62, 3.75], [1.6, 3.83], [1.53, 3.83], [1.5, 3.72], [1.47, 0.45], [1.3, 0.3], [0, 0.28]],
-      handle: { pts: [[1.58, 3.2], [2.3, 3.15], [2.62, 2.6], [2.55, 1.5], [2.25, 0.95], [1.58, 0.85]], rad: 0.2 } },
-    glass: { cat: "drink", label: "Stemless wine glass", kind: "lathe", fin: ["clear"], def: "clear", wrap: true, panel: 0.36, zone: [1.25, 3.55], ink: "#14181f",
-      body: [[0, 0], [0.95, 0], [1.08, 0.08], [1.2, 0.4], [1.55, 1.2], [1.78, 2.2], [1.8, 3.0], [1.68, 4.0], [1.55, 4.6], [1.5, 4.62], [1.62, 4.0], [1.73, 3.0], [1.71, 2.2], [1.48, 1.2], [1.1, 0.5], [0, 0.42]] },
-    block: { cat: "photo", label: "Acrylic photo block", kind: "slab", fin: ["clear"], def: "clear", orient: true, dims: [7, 5], thick: 0.75, bleed: true, back: true, r: 0.06 },
-    ornament: { cat: "photo", label: "Photo ornament", kind: "slab", fin: ["wood", "clear", "pwhite"], def: "wood", shape: function () { return circ(1.65, [0, 1.38, 0.1]); }, pshape: function () { return circ(1.56); }, dims: [3.3, 3.3], thick: 0.2, bleed: true, ribbon: [0, 1.38, 0.42], sway: true },
-    coasters: { cat: "photo", label: "Coasters, set of 4", kind: "slab", fin: ["ceramic", "slate"], def: "ceramic", dims: [4, 4], thick: 0.25, bleed: true, r: 0.22, tiles: 4, flat: true },
-    panel: { cat: "photo", label: "Photo panel", kind: "slab", fin: ["slate", "wood", "glassp"], def: "slate", orient: true, dims: [8, 6], thick: 0.3, bleed: true, r: 0.05, easel: true, lean: 0.14 },
-    tee: { cat: "wear", label: "T-shirt", kind: "cloth", fin: ["fwhite", "fblack", "heather", "fnavy", "fsage"], def: "fwhite", shape: function () { return pathShape(teeCmds); }, print: [-6, -6.5, 12, 13.5] },
-    hoodie: { cat: "wear", label: "Hoodie", kind: "cloth", fin: ["fblack", "heather", "fnavy", "fsage", "fwhite"], def: "heather", shape: function () { return pathShape(hoodCmds); }, print: [-5.8, -3.6, 11.6, 11], hood: true },
-    tote: { cat: "wear", label: "Tote bag", kind: "cloth", fin: ["natural", "fblack"], def: "natural", shape: function () { return rrect(15, 16, 0.3); }, print: [-5.5, -6, 11, 11], straps: true },
-    apron: { cat: "wear", label: "Apron", kind: "cloth", fin: ["fblack", "natural", "fnavy"], def: "fblack", shape: function () { return pathShape(apronCmds); }, print: [-4.3, 3, 8.6, 9.6], ties: true },
-    keychain: { cat: "mini", label: "Acrylic keychain", kind: "slab", fin: ["clear", "frosted"], def: "clear", shape: function () { return circ(1, [0, 0.8, 0.11]); }, pshape: function () { return circ(0.95, [0, 0.8, 0.2]); }, dims: [2, 2], thick: 0.12, bleed: true, back: true, ring: [0, 0.8, 0.36], sway: true },
-    magnet: { cat: "mini", label: "Fridge magnet", kind: "slab", fin: ["mwhite"], def: "mwhite", dims: [3.5, 2.4], thick: 0.1, bleed: true, r: 0.2, magnet: true, sway: true },
-    phone: { cat: "mini", label: "Phone case", kind: "slab", fin: ["clear", "pblack", "pwhite"], def: "pblack", shape: function () { return rrect(2.95, 6.05, 0.46); }, pshape: function () { var s = rrect(2.82, 5.92, 0.4), h = new THREE.Path(); var x = -1.36, y = 1.36, w = 1.42, hh = 1.42, r = 0.3; h.moveTo(x + r, y); h.lineTo(x, y + r); h.lineTo(x, y + hh - r); h.quadraticCurveTo(x, y + hh, x + r, y + hh); h.lineTo(x + w - r, y + hh); h.quadraticCurveTo(x + w, y + hh, x + w, y + hh - r); h.lineTo(x + w, y + r); h.quadraticCurveTo(x + w, y, x + w - r, y); h.lineTo(x + r, y); s.holes.push(h); return s; }, dims: [2.95, 6.05], thick: 0.36, bleed: true, bump: true, sway: true },
-    plate: { cat: "mini", label: "Desk name plate", kind: "slab", fin: ["clear", "pwhite", "pblack"], def: "clear", dims: [8, 2.6], thick: 0.22, bleed: false, r: 0.12, base: true }
-  };
-  var CAT_DEFAULT = { drink: "tumbler", photo: "block", wear: "tee", mini: "keychain" };
-
-  function buildProductChips() {
-    var cat = val("to-cat"), cur = val("to-product");
-    prodBox.innerHTML = "";
-    Object.keys(P).forEach(function (k) {
-      if (P[k].cat !== cat) return;
-      var l = document.createElement("label"); l.className = "opt";
-      var i = document.createElement("input"); i.type = "radio"; i.name = "to-product"; i.value = k;
-      var s = document.createElement("span"); s.textContent = P[k].label;
-      l.appendChild(i); l.appendChild(s); prodBox.appendChild(l);
-    });
-    if (!setVal("to-product", cur)) setVal("to-product", CAT_DEFAULT[cat]);
-  }
-  function buildFinishChips(p) {
-    var cur = val("to-colour");
-    finBox.innerHTML = "";
-    p.fin.forEach(function (id) {
-      var f = F[id], l = document.createElement("label"); l.className = "opt";
-      var i = document.createElement("input"); i.type = "radio"; i.name = "to-colour"; i.value = id;
-      var s = document.createElement("span"), sw = document.createElement("i"); sw.className = "sw";
-      sw.style.background = f.glass ? "linear-gradient(135deg,#ffffff,#dfe7ef)" : f.wood ? "#c89a63" : f.slate ? "#3a3e44" : f.c;
-      s.appendChild(sw); s.appendChild(document.createTextNode(f.label));
-      l.appendChild(i); l.appendChild(s); finBox.appendChild(l);
-    });
-    setVal("to-colour", p.def);
-    $("to-finish-label").textContent = p.fin.some(function (id) { var f = F[id]; return f.glass || f.wood || f.slate || id === "ceramic"; }) ? "Material" : "Colour";
-  }
-
-  /* ---------- artwork ---------- */
-  var art = document.createElement("canvas"), actx = art.getContext("2d");
-  var photo = null, photoCut = null, photoFile = null;
-  var fam = {
-    bold: function (s) { return '800 ' + s + 'px "Bricolage Grotesque", "Arial Black", system-ui, sans-serif'; },
-    script: function (s) { return '700 ' + s + 'px "Dancing Script", "Brush Script MT", cursive'; },
-    type: function (s) { return '500 ' + s + 'px "IBM Plex Mono", "Courier New", monospace'; }
-  };
-  var DESIGN_NAMES = { photo: "Customer photo or logo", mountains: "Mountains", flowers: "Wildflowers", sunset: "Retro sunset", monogram: "Monogram", name: "Name only" };
-  var INK_NAMES = { "#ffffff": "White", "#14181f": "Black", "#1e6b4f": "Spruce", "#e6007e": "Pink" };
-
-  function cur() { return P[val("to-product")] || P.tumbler; }
-  function finish() { return F[val("to-colour")] || F[cur().def]; }
-  function inkColour() {
-    var v = val("to-ink");
-    if (v && v !== "auto") return v;
-    var p = cur(), f = finish();
-    if (p.ink) return p.ink;
-    if (f.glass) return "#14181f";
-    return f.dark ? "#ffffff" : "#14181f";
-  }
-  function img() { return val("to-design") === "photo" ? (cutIn.checked && photoCut ? photoCut : photo) : null; }
-
-  function roundRect(c, x, y, w, h, r) {
-    c.beginPath(); c.moveTo(x + r, y); c.lineTo(x + w - r, y); c.quadraticCurveTo(x + w, y, x + w, y + r);
-    c.lineTo(x + w, y + h - r); c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    c.lineTo(x + r, y + h); c.quadraticCurveTo(x, y + h, x, y + h - r);
-    c.lineTo(x, y + r); c.quadraticCurveTo(x, y, x + r, y); c.closePath();
-  }
-  function fitFont(c, text, maxW, maxH) {
-    var f = fam[val("to-font")] || fam.bold, s = maxH;
-    c.font = f(s);
-    var w = c.measureText(text).width;
-    if (w > maxW) { s = s * maxW / w; c.font = f(s); }
-    return s;
-  }
-  function drawText(c, text, cx, cy, maxW, maxH, ink, shadow) {
-    if (!text) return;
-    var s = fitFont(c, text, maxW, maxH);
-    c.save(); c.fillStyle = ink; c.textAlign = "center"; c.textBaseline = "middle";
-    if (shadow) { c.shadowColor = "rgba(0,0,0,0.5)"; c.shadowBlur = s * 0.14; c.shadowOffsetY = s * 0.03; }
-    c.fillText(text, cx, cy); c.restore();
-  }
-  function scaleBox(b, k) { return { x: b.x + b.w * (1 - k) / 2, y: b.y + b.h * (1 - k) / 2, w: b.w * k, h: b.h * k }; }
-  function drawImageIn(c, im, b, mode, rounded) {
-    var sc = mode === "cover" ? Math.max(b.w / im.width, b.h / im.height) : Math.min(b.w / im.width, b.h / im.height);
-    var dw = im.width * sc, dh = im.height * sc, dx = b.x + (b.w - dw) / 2, dy = b.y + (b.h - dh) / 2;
-    c.save();
-    if (mode === "cover") { c.beginPath(); c.rect(b.x, b.y, b.w, b.h); c.clip(); }
-    else if (rounded) { roundRect(c, dx, dy, dw, dh, Math.min(dw, dh) * 0.04); c.clip(); }
-    c.drawImage(im, dx, dy, dw, dh); c.restore();
-  }
-
-  /* preset designs: each fills box b */
-  var PRESET = {
-    mountains: function (c, b, ink) {
-      var x = b.x, y = b.y, w = b.w, h = b.h, s = Math.min(w, h), lw = Math.max(3, s * 0.02);
-      c.save(); c.strokeStyle = ink; c.fillStyle = ink; c.lineWidth = lw; c.lineJoin = "round"; c.lineCap = "round";
-      c.beginPath(); c.arc(x + w * 0.66, y + h * 0.3, s * 0.12, 0, Math.PI * 2); c.stroke();
-      var base = y + h * 0.82;
-      var pk = w / h > 2 ? [[0, 0.62], [0.08, 0.4], [0.17, 0.58], [0.27, 0.34], [0.38, 0.6], [0.5, 0.3], [0.62, 0.56], [0.73, 0.38], [0.85, 0.6], [0.93, 0.42], [1, 0.62]]
-                         : [[0, 0.66], [0.2, 0.42], [0.34, 0.58], [0.52, 0.3], [0.7, 0.56], [0.84, 0.44], [1, 0.66]];
-      c.beginPath(); pk.forEach(function (p, i) { var px = x + w * p[0], py = y + h * p[1]; if (i) c.lineTo(px, py); else c.moveTo(px, py); }); c.stroke();
-      var n = Math.max(5, Math.round(w / (h * 0.11)));
-      for (var i = 0; i < n; i++) {
-        var tx = x + w * (i + 0.5) / n, th = h * (0.17 + ((i * 37) % 7) * 0.016), tw = th * 0.5;
-        c.beginPath(); c.moveTo(tx, base - th); c.lineTo(tx + tw / 2, base); c.lineTo(tx - tw / 2, base); c.closePath(); c.fill();
-      }
-      c.beginPath(); c.moveTo(x + w * 0.04, base + lw); c.lineTo(x + w * 0.96, base + lw); c.stroke();
-      c.restore();
-    },
-    flowers: function (c, b) {
-      var x = b.x, y = b.y, w = b.w, h = b.h, s = Math.min(w, h);
-      var cols = ["#e6007e", "#ffd400", "#00a3e0", "#ff5a36", "#f39ac0"];
-      var n = Math.max(5, Math.round(w / (s * 0.17)));
-      c.save(); c.lineCap = "round";
-      for (var i = 0; i < n; i++) {
-        var fx = x + w * (i + 0.5) / n + ((i * 53) % 9 - 4) * s * 0.006;
-        var top = y + h * (0.12 + ((i * 29) % 5) * 0.09), r = s * (0.06 + ((i * 17) % 3) * 0.012);
-        c.strokeStyle = "#3f8f5f"; c.lineWidth = Math.max(2, s * 0.012);
-        c.beginPath(); c.moveTo(fx, y + h * 0.98); c.quadraticCurveTo(fx + r, y + h * 0.6, fx, top); c.stroke();
-        c.fillStyle = "#55a873";
-        c.beginPath(); c.ellipse(fx + r * 0.7, y + h * 0.72, r * 0.6, r * 0.22, -0.6, 0, Math.PI * 2); c.fill();
-        c.fillStyle = cols[i % cols.length];
-        for (var k = 0; k < 5; k++) { var a = k / 5 * Math.PI * 2; c.beginPath(); c.arc(fx + Math.cos(a) * r * 0.7, top + Math.sin(a) * r * 0.7, r * 0.55, 0, Math.PI * 2); c.fill(); }
-        c.fillStyle = "#ffffff"; c.beginPath(); c.arc(fx, top, r * 0.35, 0, Math.PI * 2); c.fill();
-      }
-      c.restore();
-    },
-    sunset: function (c, b, ink) {
-      var s = Math.min(b.w, b.h), cx = b.x + b.w / 2, cy = b.y + b.h * 0.62, r = s * 0.4;
-      c.save();
-      c.beginPath(); c.arc(cx, cy, r, Math.PI, 0); c.closePath(); c.clip();
-      var cols = ["#ffd400", "#ffb000", "#ff7a2e", "#ff5a36", "#e6007e"];
-      for (var i = 0; i < 5; i++) { c.fillStyle = cols[i]; c.fillRect(cx - r, cy - r + i * r / 5, r * 2, r / 5 - (i ? s * 0.012 * i : 0)); }
-      c.restore();
-      c.save(); c.strokeStyle = ink; c.lineWidth = Math.max(3, s * 0.018); c.lineCap = "round";
-      for (var j = 0; j < 3; j++) { var yy = cy + s * 0.05 + j * s * 0.07, ww = r * (1.3 - j * 0.3); c.beginPath(); c.moveTo(cx - ww, yy); c.lineTo(cx + ww, yy); c.stroke(); }
-      c.restore();
-    },
-    monogram: function (c, b, ink) {
-      var s = Math.min(b.w, b.h), cx = b.x + b.w / 2, cy = b.y + b.h / 2, r = s * 0.44;
-      c.save(); c.strokeStyle = ink; c.fillStyle = ink; c.lineWidth = Math.max(3, s * 0.018);
-      c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.stroke();
-      c.lineWidth = Math.max(2, s * 0.008); c.beginPath(); c.arc(cx, cy, r * 0.9, 0, Math.PI * 2); c.stroke();
-      for (var side = -1; side <= 1; side += 2) for (var k = 0; k < 5; k++) {
-        var a = Math.PI / 2 + side * (0.5 + k * 0.22), lx = cx + Math.cos(a) * r * 0.78, ly = cy + Math.sin(a) * r * 0.78;
-        c.beginPath(); c.ellipse(lx, ly, s * 0.035, s * 0.014, a + side * 0.9, 0, Math.PI * 2); c.fill();
-      }
-      var t = (nameIn.value.trim()[0] || "S").toUpperCase();
-      c.textAlign = "center"; c.textBaseline = "middle";
-      var f = fam[val("to-font")] || fam.bold; c.font = f(r * 1.05);
-      c.fillText(t, cx, cy + r * 0.04);
-      c.restore();
-    }
-  };
-  function placeholder(c, b, ink) {
-    var s = Math.min(b.w, b.h);
-    c.save(); c.strokeStyle = ink; c.fillStyle = ink; c.globalAlpha = 0.7; c.lineWidth = Math.max(3, s * 0.014);
-    c.setLineDash([s * 0.04, s * 0.03]); roundRect(c, b.x, b.y, b.w, b.h, s * 0.05); c.stroke(); c.setLineDash([]);
-    c.textAlign = "center"; c.textBaseline = "middle"; c.font = '600 ' + Math.round(s * 0.1) + 'px system-ui, sans-serif';
-    c.fillText("Your photo", b.x + b.w / 2, b.y + b.h / 2);
-    c.restore();
-  }
-  function drawDesign(c, d, b, ink) {
-    if (d === "photo") {
-      var im = img();
-      if (im) drawImageIn(c, im, scaleBox(b, (+sizeIn.value || 88) / 100), "contain", !cutIn.checked);
-      else placeholder(c, b, ink);
-    } else if (PRESET[d]) PRESET[d](c, b, ink);
-  }
-
-  var printW = 1, printH = 1;
-  function buildArt() {
-    var p = cur(), d = val("to-design"), text = nameIn.value.trim(), ink = inkColour();
-    var W, H;
-    if (printW >= printH) { W = 2048; H = Math.round(2048 * printH / printW); } else { H = 2048; W = Math.round(2048 * printW / printH); }
-    if (art.width !== W || art.height !== H) { art.width = W; art.height = H; }
-    var c = actx; c.clearRect(0, 0, W, H);
-    var shift = (+posIn.value || 0) / 100 * H, im = img();
-    c.save(); c.translate(0, d === "photo" ? shift : 0);
-
-    if (p.kind === "lathe") {
-      var layout = val("to-layout"), pw = W * p.panel, cx = W / 2;
-      if (layout === "wrap" && d !== "name") {
-        if (im) drawImageIn(c, im, { x: 0, y: 0, w: W, h: H }, "cover");
-        else if (d === "photo") placeholder(c, { x: cx - pw / 2, y: H * 0.08, w: pw, h: H * 0.6 }, ink);
-        else drawDesign(c, d, { x: 0, y: H * 0.05, w: W, h: H * (text ? 0.66 : 0.9) }, ink);
-        c.restore(); drawText(c, text, cx, H * 0.86, pw, H * 0.14, im ? "#ffffff" : ink, !!im);
-        return;
-      }
-      if (d === "name") { c.restore(); drawText(c, text || "Your name", cx, H * 0.5, pw, H * 0.26, ink); return; }
-      var hasFrontText = layout !== "frontback" && text;
-      var top = H * 0.05, bottom = hasFrontText ? H * 0.72 : H * 0.95;
-      drawDesign(c, d, { x: cx - pw / 2, y: top, w: pw, h: bottom - top }, ink);
-      c.restore();
-      if (hasFrontText) drawText(c, text, cx, H * 0.85, pw * 0.98, H * 0.15, ink);
-      if (layout === "frontback" && text) { drawText(c, text, 0, H * 0.5, pw * 1.1, H * 0.18, ink); drawText(c, text, W, H * 0.5, pw * 1.1, H * 0.18, ink); }
-      return;
-    }
-    /* flat and fabric items */
-    if (p.bleed && im) {
-      drawImageIn(c, im, { x: 0, y: 0, w: W, h: H }, "cover");
-      c.restore();
-      drawText(c, text, W / 2, H * 0.86, W * 0.8, H * 0.13, "#ffffff", true);
-      return;
-    }
-    c.restore();
-    var m = p.bleed ? 0.1 : 0.05, A = { x: W * m, y: H * m, w: W * (1 - 2 * m), h: H * (1 - 2 * m) };
-    if (d === "name") { drawText(c, text || "Your name", W / 2, H / 2, A.w, Math.min(A.h * 0.7, A.w * 0.3), ink); return; }
-    c.save(); c.translate(0, d === "photo" ? shift : 0);
-    if (text && A.w / A.h > 2.2) {
-      var sq = { x: A.x, y: A.y, w: A.h, h: A.h };
-      drawDesign(c, d, sq, ink); c.restore();
-      drawText(c, text, A.x + A.h + (A.w - A.h) / 2, H / 2, (A.w - A.h) * 0.92, A.h * 0.6, ink);
-    } else if (text) {
-      drawDesign(c, d, { x: A.x, y: A.y, w: A.w, h: A.h * 0.72 }, ink); c.restore();
-      drawText(c, text, W / 2, A.y + A.h * 0.88, A.w, A.h * 0.2, ink);
-    } else { drawDesign(c, d, A, ink); c.restore(); }
-  }
-
-  /* ---------- 3D setup ---------- */
-  var ok = !!window.THREE, renderer = null;
-  if (ok) { try { renderer = new THREE.WebGLRenderer({ canvas: cvs, antialias: true, alpha: true, preserveDrawingBuffer: true }); } catch (e) { ok = false; } }
-  var T = window.THREE;
-  if (ok && renderer) {
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.outputEncoding = T.sRGBEncoding;
-    renderer.toneMapping = T.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
-  } else {
-    cvs.hidden = true; root.querySelector(".to-views").hidden = true; $("to-fallback").hidden = false;
-  }
-  var scene, camera, group, shadow, tex, printMat, bodyMat;
-  if (renderer) {
-    scene = new T.Scene();
-    camera = new T.PerspectiveCamera(28, 4 / 5, 0.1, 400);
-    (function makeEnv() {
-      var env = new T.Scene(), g = new T.SphereGeometry(60, 32, 16), pos = g.attributes.position, cols = [];
-      var lo = new T.Color("#4a4f58"), hi = new T.Color("#f4f6fa"), tmp = new T.Color();
-      for (var i = 0; i < pos.count; i++) { tmp.copy(lo).lerp(hi, Math.pow((pos.getY(i) / 60 + 1) / 2, 0.8)); cols.push(tmp.r, tmp.g, tmp.b); }
-      g.setAttribute("color", new T.Float32BufferAttribute(cols, 3));
-      env.add(new T.Mesh(g, new T.MeshBasicMaterial({ vertexColors: true, side: T.BackSide })));
-      function soft(x, y, z, w, h, v) { var m = new T.Mesh(new T.PlaneGeometry(w, h), new T.MeshBasicMaterial({ color: new T.Color(v, v, v), side: T.DoubleSide })); m.position.set(x, y, z); m.lookAt(0, 0, 0); env.add(m); }
-      soft(-26, 6, 22, 10, 44, 5); soft(28, 4, 14, 7, 40, 3); soft(0, 40, 0, 40, 40, 1.6);
-      scene.environment = new T.PMREMGenerator(renderer).fromScene(env, 0.03).texture;
-    })();
-    var key = new T.DirectionalLight(0xffffff, 0.55); key.position.set(-4, 6, 8); scene.add(key);
-    var sc = document.createElement("canvas"); sc.width = sc.height = 128;
-    var sx = sc.getContext("2d"), gr = sx.createRadialGradient(64, 64, 0, 64, 64, 64);
-    gr.addColorStop(0, "rgba(0,0,0,0.5)"); gr.addColorStop(0.55, "rgba(0,0,0,0.16)"); gr.addColorStop(1, "rgba(0,0,0,0)");
-    sx.fillStyle = gr; sx.fillRect(0, 0, 128, 128);
-    shadow = new T.Mesh(new T.PlaneGeometry(1, 1), new T.MeshBasicMaterial({ map: new T.CanvasTexture(sc), transparent: true, depthWrite: false }));
-    shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.002; scene.add(shadow);
-    group = new T.Group(); scene.add(group);
-    tex = new T.CanvasTexture(art); tex.encoding = T.sRGBEncoding; tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    printMat = new T.MeshStandardMaterial({ map: tex, transparent: true, roughness: 0.32, metalness: 0, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2, depthWrite: false, side: T.DoubleSide });
-  }
-
-  var texCache = {};
-  function noiseTex(kind) {
-    if (texCache[kind]) return texCache[kind];
-    var c = document.createElement("canvas"); c.width = c.height = 512; var x = c.getContext("2d");
-    if (kind === "wood") {
-      x.fillStyle = "#c89a63"; x.fillRect(0, 0, 512, 512);
-      for (var i = 0; i < 90; i++) {
-        var y0 = Math.random() * 512, a = 4 + Math.random() * 10, f = 0.004 + Math.random() * 0.01;
-        x.strokeStyle = "rgba(" + (110 + Math.random() * 40 | 0) + "," + (70 + Math.random() * 25 | 0) + ",35," + (0.12 + Math.random() * 0.25) + ")";
-        x.lineWidth = 0.6 + Math.random() * 2.2; x.beginPath();
-        for (var px = 0; px <= 512; px += 8) { var py = y0 + Math.sin(px * f + i) * a; if (px) x.lineTo(px, py); else x.moveTo(px, py); }
-        x.stroke();
-      }
-    } else {
-      x.fillStyle = "#383c42"; x.fillRect(0, 0, 512, 512);
-      for (var j = 0; j < 9000; j++) { var g = 50 + Math.random() * 40 | 0; x.fillStyle = "rgba(" + g + "," + (g + 3) + "," + (g + 8) + ",0.55)"; x.fillRect(Math.random() * 512, Math.random() * 512, 1 + Math.random() * 3, 1 + Math.random() * 2); }
-      for (var k = 0; k < 40; k++) { x.strokeStyle = "rgba(90,96,104,0.35)"; x.lineWidth = 1; x.beginPath(); var yy = Math.random() * 512; x.moveTo(0, yy); x.lineTo(512, yy + (Math.random() - 0.5) * 40); x.stroke(); }
-    }
-    var t = new T.CanvasTexture(c); t.encoding = T.sRGBEncoding; t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(0.25, 0.25);
-    return (texCache[kind] = t);
-  }
-  function makeMat(f) {
-    if (f.glass) return new T.MeshPhysicalMaterial({ color: 0xffffff, metalness: 0, roughness: f.frost ? 0.5 : 0.04, transparent: true, opacity: f.frost ? 0.6 : 0.14, clearcoat: 1, clearcoatRoughness: 0.05, side: T.DoubleSide, depthWrite: false });
-    var m = new T.MeshStandardMaterial({ color: new T.Color(f.c || "#ffffff").convertSRGBToLinear(), roughness: f.r == null ? 0.55 : f.r, metalness: f.m || 0, side: T.DoubleSide });
-    if (f.wood) m.map = noiseTex("wood");
-    if (f.slate) m.map = noiseTex("slate");
-    return m;
-  }
-  function std(c, r, m) { return new T.MeshStandardMaterial({ color: new T.Color(c).convertSRGBToLinear(), roughness: r, metalness: m || 0 }); }
-  function v2(a) { return a.map(function (p) { return new T.Vector2(p[0], p[1]); }); }
-  function radiusAt(body, y) {
-    for (var i = 1; i < body.length; i++) {
-      var a = body[i - 1], b = body[i];
-      if (b[1] < a[1]) break;
-      if (y >= a[1] && y <= b[1] && b[1] > a[1]) return a[0] + (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]);
-    }
-    return body[1][0];
-  }
-  function planeGeo(shape, rect, z) {
-    var g = new T.ShapeGeometry(shape, 64), pos = g.attributes.position, uv = g.attributes.uv;
-    for (var i = 0; i < pos.count; i++) uv.setXY(i, (pos.getX(i) - rect[0]) / rect[2], (pos.getY(i) - rect[1]) / rect[3]);
-    g.translate(0, 0, z); return g;
-  }
-  function tube(pts, rad, mat, z) {
-    var curve = new T.CatmullRomCurve3(pts.map(function (q) { return new T.Vector3(q[0], q[1], q[2] || z || 0); }));
-    return new T.Mesh(new T.TubeGeometry(curve, 64, rad, 16, false), mat);
-  }
-
-  var builtKey = "", circum = 1;
-  function build() {
-    var p = cur(), k = val("to-product") + "|" + val("to-colour") + "|" + val("to-orient");
-    if (!renderer || k === builtKey) return;
-    builtKey = k;
-    group.traverse(function (o) { if (o.geometry) o.geometry.dispose(); if (o.material && o.material !== printMat) o.material.dispose(); });
-    while (group.children.length) group.remove(group.children[0]);
-    var f = finish(); bodyMat = makeMat(f);
-    var obj = new T.Group(); group.add(obj);
-    var elev = 0.14;
-
-    if (p.kind === "lathe") {
-      var body = new T.Mesh(new T.LatheGeometry(v2(p.body), 120), bodyMat); body.renderOrder = 1; obj.add(body);
-      if (p.glaze || p.fin[0] === "gwhite") { bodyMat.roughness = Math.min(bodyMat.roughness, 0.16); bodyMat.metalness = 0; }
-      var zp = [], y0 = p.zone[0], y1 = p.zone[1], n = 28, rs = 0;
-      for (var i = 0; i <= n; i++) { var y = y0 + (y1 - y0) * i / n, r = radiusAt(p.body, y) + 0.012; rs += r; zp.push(new T.Vector2(r, y)); }
-      circum = 2 * Math.PI * rs / (n + 1); printW = circum; printH = y1 - y0;
-      var pr = new T.Mesh(new T.LatheGeometry(zp, 120, Math.PI, Math.PI * 2), printMat); pr.renderOrder = 2; obj.add(pr);
-      if (p.lid) obj.add(new T.Mesh(new T.LatheGeometry(v2(p.lid.pts), 120), std(p.lid.c, p.lid.r, p.lid.m)));
-      if (p.straw) {
-        var st = new T.Mesh(new T.CylinderGeometry(p.straw.rad, p.straw.rad, p.straw.y1 - p.straw.y0, 24, 1, true), new T.MeshStandardMaterial({ color: 0xf3f5f8, roughness: 0.2, transparent: true, opacity: 0.8 }));
-        st.position.set(p.straw.x, (p.straw.y0 + p.straw.y1) / 2, -0.15); st.rotation.z = -0.06; obj.add(st);
-      }
-      if (p.handle) obj.add(tube(p.handle.pts, p.handle.rad, bodyMat));
-    }
-
-    if (p.kind === "slab") {
-      var d = p.dims.slice();
-      if (p.orient && val("to-orient") === "port") d = [d[1], d[0]];
-      var w = d[0], h = d[1], t = p.thick;
-      var shape = p.shape ? p.shape() : (f.slate ? slateShape(w, h) : rrect(w, h, p.r || 0.05));
-      var pshape = p.pshape ? p.pshape() : (f.slate ? slateShape(w - 0.16, h - 0.16) : rrect(w - (p.bleed ? 0.04 : 0), h - (p.bleed ? 0.04 : 0), Math.max(0.02, (p.r || 0.05) - 0.02)));
-      var bev = Math.min(0.04, t * 0.25);
-      var eg = new T.ExtrudeGeometry(shape, { depth: t - 2 * bev, bevelEnabled: true, bevelThickness: bev, bevelSize: bev, bevelSegments: 3, curveSegments: 64 });
-      eg.translate(0, 0, -(t - 2 * bev) / 2);
-      var rect = p.bleed ? [-w / 2, -h / 2, w, h] : [-w / 2 + 0.25, -h / 2 + 0.2, w - 0.5, h - 0.4];
-      if (!p.bleed) pshape = rrect(rect[2], rect[3], 0.05);
-      printW = rect[2]; printH = rect[3];
-      var piece = new T.Group();
-      var count = p.tiles || 1;
-      for (var q = 0; q < count; q++) {
-        var tile = new T.Group();
-        var bm = new T.Mesh(eg, bodyMat);
-        var zf = p.back ? -t / 2 + 0.004 : t / 2 + 0.004;
-        var pm = new T.Mesh(planeGeo(pshape, rect, zf), printMat);
-        if (f.glass) { bm.renderOrder = p.back ? 2 : 1; pm.renderOrder = p.back ? 1 : 2; }
-        tile.add(bm); tile.add(pm);
-        if (p.tiles) {
-          var cork = new T.Mesh(new T.ExtrudeGeometry(rrect(w - 0.1, h - 0.1, 0.2), { depth: 0.06, bevelEnabled: false }), std("#a87a4f", 0.95));
-          cork.position.z = -t / 2 - 0.06; tile.add(cork);
-          tile.rotation.x = -Math.PI / 2;
-          tile.position.set((q % 2 ? 1 : -1) * (w / 2 + 0.12), t / 2 + 0.07, (q < 2 ? -1 : 1) * (h / 2 + 0.12));
-        }
-        if (p.magnet) { var mg = new T.Mesh(new T.ExtrudeGeometry(rrect(w - 0.1, h - 0.1, 0.18), { depth: 0.05, bevelEnabled: false }), std("#2a2a2a", 0.8)); mg.position.z = -t / 2 - 0.05; tile.add(mg); }
-        piece.add(tile);
-      }
-      if (p.bump) {
-        var bs = rrect(1.42, 1.42, 0.3), bump = new T.Mesh(new T.ExtrudeGeometry(bs, { depth: 0.08, bevelEnabled: true, bevelThickness: 0.02, bevelSize: 0.02, bevelSegments: 2 }), std("#16181b", 0.25, 0.2));
-        bump.position.set(-0.65, 2.07, t / 2 - 0.02); piece.add(bump);
-        [[-0.95, 2.37], [-0.35, 2.37], [-0.95, 1.77]].forEach(function (c) {
-          var l = new T.Mesh(new T.CylinderGeometry(0.22, 0.22, 0.08, 32), std("#0b0c0e", 0.05, 0.6)); l.rotation.x = Math.PI / 2; l.position.set(c[0], c[1], t / 2 + 0.1); piece.add(l);
-          var ring = new T.Mesh(new T.TorusGeometry(0.22, 0.03, 8, 32), std("#8d9298", 0.25, 0.9)); ring.position.set(c[0], c[1], t / 2 + 0.14); piece.add(ring);
-        });
-      }
-      if (p.ring) { var rg = new T.Mesh(new T.TorusGeometry(p.ring[2], 0.035, 12, 48), std("#c9ced4", 0.2, 1)); rg.rotation.y = Math.PI / 2; rg.position.set(p.ring[0], p.ring[1] + p.ring[2], 0); piece.add(rg); }
-      if (p.ribbon) { var rb = new T.Mesh(new T.TorusGeometry(p.ribbon[2], 0.06, 12, 48), std("#b3122e", 0.6)); rb.rotation.y = Math.PI / 2; rb.position.set(p.ribbon[0], p.ribbon[1] + p.ribbon[2], 0); piece.add(rb); }
-      if (p.tiles) { elev = 0.75; obj.add(piece); }
-      else {
-        var holder = new T.Group(); holder.add(piece);
-        if (p.lean) holder.rotation.x = -p.lean;
-        holder.position.y = h / 2 + (p.base ? 0.55 : p.easel ? 0.15 : p.ring || p.ribbon ? 0.6 : 0.05);
-        obj.add(holder);
-        if (p.base) {
-          var bw = w + 0.8, base = new T.Mesh(new T.BoxGeometry(bw, 0.8, 1.4), makeMat(F.wood));
-          base.position.y = 0.4; obj.add(base);
-        }
-        if (p.easel) {
-          [-1, 1].forEach(function (s) {
-            var leg = new T.Mesh(new T.BoxGeometry(0.35, 1.6, 0.12), std("#1b1c1f", 0.5));
-            leg.position.set(s * w * 0.28, 0.75, -0.75); leg.rotation.x = 0.5; obj.add(leg);
-            var lip = new T.Mesh(new T.BoxGeometry(0.5, 0.18, 0.55), std("#1b1c1f", 0.5)); lip.position.set(s * w * 0.28, 0.09, 0.05); obj.add(lip);
-          });
-        }
-      }
-    }
-
-    if (p.kind === "cloth") {
-      var cs = p.shape(), depth = 0.35;
-      var cg = new T.ExtrudeGeometry(cs, { depth: depth, bevelEnabled: true, bevelThickness: 0.45, bevelSize: 0.35, bevelSegments: 5, curveSegments: 32 });
-      var cm = new T.Mesh(cg, bodyMat); obj.add(cm);
-      var fz = depth + 0.45 + 0.01, pr2 = p.print;
-      printW = pr2[2]; printH = pr2[3];
-      obj.add(new T.Mesh(planeGeo(rrect(pr2[2], pr2[3], 0.05), [-pr2[2] / 2, -pr2[3] / 2, pr2[2], pr2[3]], fz).translate(pr2[0] + pr2[2] / 2, pr2[1] + pr2[3] / 2, 0), printMat));
-      if (p.hood) {
-        var hg = new T.Mesh(new T.ExtrudeGeometry(pathShape(hoodTop), { depth: 0.3, bevelEnabled: true, bevelThickness: 0.35, bevelSize: 0.3, bevelSegments: 4 }), bodyMat); hg.position.z = -0.5; obj.add(hg);
-        var pk = new T.Mesh(new T.ExtrudeGeometry(pathShape(pocket), { depth: 0.05, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.1, bevelSegments: 3 }), bodyMat); pk.position.z = fz - 0.05; obj.add(pk);
-        [-1.2, 1.2].forEach(function (x) { obj.add(tube([[x, 12.4, fz], [x * 1.05, 8, fz + 0.15], [x * 1.1, 5.5, fz + 0.1]], 0.12, std("#f2f2f0", 0.8))); });
-      }
-      if (p.straps) {
-        obj.add(tube([[-3.6, 7.8, 0.5], [-3.9, 12.8, 0.55], [0, 15.6, 0.55], [3.9, 12.8, 0.55], [3.6, 7.8, 0.5]], 0.4, bodyMat));
-        obj.add(tube([[-3.6, 7.8, -0.2], [-4.1, 12.4, -0.3], [0, 15.2, -0.3], [4.1, 12.4, -0.3], [3.6, 7.8, -0.2]], 0.4, bodyMat));
-      }
-      if (p.ties) {
-        obj.add(tube([[-4.5, 13.8, 0.3], [-5.2, 18.5, 0.2], [0, 21, 0], [5.2, 18.5, 0.2], [4.5, 13.8, 0.3]], 0.3, bodyMat));
-        [-1, 1].forEach(function (s) { obj.add(tube([[s * 10.8, 1.6, 0.3], [s * 14, 0.2, 0.4], [s * 16, -4, 0.3], [s * 15.4, -9, 0.2]], 0.3, bodyMat)); });
-      }
-      var bb = new T.Box3().setFromObject(obj); obj.position.y = -bb.min.y + 0.2;
-    }
-
-    /* frame camera */
-    var box = new T.Box3().setFromObject(group), size = new T.Vector3(), ctr = new T.Vector3();
-    box.getSize(size); box.getCenter(ctr);
-    var reach = 0;
-    group.updateMatrixWorld(true);
-    var v = new T.Vector3();
-    group.traverse(function (o) {
-      if (!o.geometry) return;
-      var a = o.geometry.attributes.position;
-      for (var j = 0; j < a.count; j += 3) { v.fromBufferAttribute(a, j).applyMatrix4(o.matrixWorld); var dd = Math.hypot(v.x, v.z); if (dd > reach) reach = dd; }
-    });
-    var vf = camera.fov * Math.PI / 180, hf = 2 * Math.atan(Math.tan(vf / 2) * camera.aspect);
-    var spinning = !(p.sway || p.kind === "cloth" || (p.kind === "slab" && !p.tiles));
-    var halfW = spinning ? reach : size.x / 2;
-    var dist = elev > 0.5 ? reach / Math.tan(Math.min(vf, hf) / 2) * 1.12
-      : Math.max((size.y / 2) / Math.tan(vf / 2), halfW / Math.tan(hf / 2)) * 1.2 + (spinning ? reach : size.z / 2);
-    camera.position.set(0, ctr.y + dist * elev, dist);
-    camera.lookAt(0, ctr.y * (elev > 0.5 ? 1 : 0.97), 0);
-    var sh = Math.min(spinning ? reach : size.x / 2, 12) * 3; shadow.scale.set(sh, sh * (spinning ? 1 : 0.5), 1);
-    shadow.visible = !(p.ring || p.ribbon);
-    mode = spinning ? "spin" : "sway";
-  }
-
-  /* ---------- rotation ---------- */
-  var rot = 0, vel = 0, auto = !reduce, target = null, dragging = false, lastX = 0, dirty = true, mode = "spin", clock = 0;
-  var viewBtns = Array.prototype.slice.call(root.querySelectorAll(".to-view"));
-  function setPressed(v) { viewBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.view === v)); }); }
-  setPressed(auto ? "spin" : "front");
-  viewBtns.forEach(function (b) {
-    b.addEventListener("click", function () {
-      var v = b.dataset.view; setPressed(v);
-      if (v === "spin") { auto = true; target = null; return; }
-      auto = false; vel = 0;
-      var base = Math.round(rot / (Math.PI * 2)) * Math.PI * 2;
-      target = v === "back" ? (rot >= base ? base + Math.PI : base - Math.PI) : base;
-      if (reduce) { rot = target; target = null; }
-      dirty = true;
-    });
-  });
-  cvs.addEventListener("pointerdown", function (e) { dragging = true; lastX = e.clientX; auto = false; target = null; vel = 0; setPressed(""); try { cvs.setPointerCapture(e.pointerId); } catch (er) {} });
-  cvs.addEventListener("pointermove", function (e) { if (!dragging) return; var dx = e.clientX - lastX; lastX = e.clientX; rot += dx * 0.012; vel = dx * 0.012; dirty = true; });
-  cvs.addEventListener("pointerup", function () { dragging = false; });
-  cvs.addEventListener("pointercancel", function () { dragging = false; });
-
-  function resize() {
-    if (!renderer) return;
-    var w = cvs.clientWidth, h = cvs.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h; camera.updateProjectionMatrix();
-    builtKey = ""; build(); dirty = true;
-  }
-  if (window.ResizeObserver) new ResizeObserver(resize).observe(cvs); else window.addEventListener("resize", resize);
-  var visible = true;
-  if (window.IntersectionObserver) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(cvs);
-
-  function frame() {
-    requestAnimationFrame(frame);
-    if (!renderer || !visible) return;
-    if (auto) {
-      clock += 0.016;
-      if (mode === "spin") rot += 0.006; else rot = Math.sin(clock * 0.7) * 0.5;
-      dirty = true;
-    } else if (target !== null) { rot += (target - rot) * 0.12; if (Math.abs(target - rot) < 0.002) { rot = target; target = null; } dirty = true; }
-    else if (!dragging && Math.abs(vel) > 0.0005) { rot += vel; vel *= 0.92; dirty = true; }
-    if (!dirty) return;
-    group.rotation.y = rot;
-    renderer.render(scene, camera);
-    dirty = false;
-  }
-
-  /* ---------- snapshot + summary ---------- */
-  function snapshot(type, q) {
-    if (!renderer) return null;
-    var saved = group.rotation.y; group.rotation.y = 0; renderer.render(scene, camera);
-    var out = document.createElement("canvas"); out.width = cvs.width; out.height = cvs.height;
-    var x = out.getContext("2d"); x.fillStyle = "#f5f6fa"; x.fillRect(0, 0, out.width, out.height); x.drawImage(cvs, 0, 0);
-    group.rotation.y = saved; dirty = true;
-    return out;
-  }
-  function summary() {
-    var p = cur(), f = finish(), t = nameIn.value.trim(), d = val("to-design");
-    return p.label + " · " + f.label + " · " + DESIGN_NAMES[d] + (t ? ' · "' + t + '"' : "");
-  }
-  var thumbTimer = 0;
-  function refreshThumb() {
-    clearTimeout(thumbTimer);
-    thumbTimer = setTimeout(function () {
-      var s = snapshot(); if (s) $("send-thumb").src = s.toDataURL("image/jpeg", 0.85);
-      $("send-sum").textContent = summary();
-    }, 350);
-  }
-
-  /* ---------- update ---------- */
-  var lastProduct = "";
-  function update() {
-    var p = cur(), k = val("to-product");
-    if (k !== lastProduct) { lastProduct = k; buildFinishChips(p); }
-    $("to-orient-ctl").hidden = !p.orient;
-    $("to-layout-ctl").hidden = p.kind !== "lathe";
-    wrapOpt.hidden = !p.wrap;
-    if (!p.wrap && val("to-layout") === "wrap") setVal("to-layout", "front");
-    photoOpt.hidden = !photo;
-    sizeCtl.hidden = !(photo && val("to-design") === "photo");
-    build();
-    buildArt();
-    if (tex) tex.needsUpdate = true;
-    cap.textContent = summary();
-    dirty = true;
-    refreshThumb();
-    if (typeof refreshPrice === "function" && btn) refreshPrice();
-  }
-
-  /* ---------- image upload ---------- */
-  function loadFile(f) {
-    if (!f) return;
-    if (!/^image\//.test(f.type)) { fileLabel.innerHTML = "<strong>That isn't an image.</strong> Try a JPG or PNG."; return; }
-    var url = URL.createObjectURL(f), im = new Image();
-    im.onload = function () {
-      var sc = Math.min(1, 1600 / Math.max(im.width, im.height)), c = document.createElement("canvas");
-      c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc);
-      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height);
-      photo = c; photoCut = null; photoFile = f; photo.full = im;
-      if (cutIn.checked) makeCutout();
-      fileLabel.innerHTML = ""; var s = document.createElement("strong"); s.textContent = f.name;
-      fileLabel.appendChild(s); fileLabel.appendChild(document.createTextNode(" · tap to change"));
-      fileRow.hidden = false;
-      setVal("to-design", "photo");
-      update();
-    };
-    im.onerror = function () { URL.revokeObjectURL(url); fileLabel.innerHTML = "<strong>We couldn't open that file.</strong> Try a JPG or PNG."; };
-    im.src = url;
-  }
-  function makeCutout() {
-    if (!photo) return;
-    var c = document.createElement("canvas"); c.width = photo.width; c.height = photo.height;
-    var x = c.getContext("2d"); x.drawImage(photo, 0, 0);
-    var d = x.getImageData(0, 0, c.width, c.height), a = d.data;
-    for (var i = 0; i < a.length; i += 4) { var m = Math.min(a[i], a[i + 1], a[i + 2]); if (m > 238) a[i + 3] = 0; else if (m > 205) a[i + 3] = Math.round(a[i + 3] * (238 - m) / 33); }
-    x.putImageData(d, 0, 0); photoCut = c;
-  }
-  fileIn.addEventListener("change", function () { loadFile(fileIn.files && fileIn.files[0]); });
-  ["dragenter", "dragover"].forEach(function (t) { drop.addEventListener(t, function (e) { e.preventDefault(); drop.classList.add("drag"); }); });
-  ["dragleave", "drop"].forEach(function (t) { drop.addEventListener(t, function () { drop.classList.remove("drag"); }); });
-  drop.addEventListener("drop", function (e) { e.preventDefault(); loadFile(e.dataTransfer.files && e.dataTransfer.files[0]); });
-  $("to-remove").addEventListener("click", function () {
-    photo = photoCut = photoFile = null; fileIn.value = ""; cutIn.checked = false;
-    fileLabel.innerHTML = "<strong>Upload a photo or logo</strong> or drop it here";
-    fileRow.hidden = true;
-    if (val("to-design") === "photo") setVal("to-design", "mountains");
-    update();
-  });
-  cutIn.addEventListener("change", function () { if (cutIn.checked && !photoCut) makeCutout(); update(); });
-
-  root.addEventListener("change", function (e) {
-    if (!e.target.name || e.target.name.indexOf("to-") !== 0) return;
-    if (e.target.name === "to-cat") buildProductChips();
-    if (e.target === fileIn || e.target === cutIn) return;
-    update();
-  });
-  root.addEventListener("input", function (e) { if (e.target === nameIn || e.target === sizeIn || e.target === posIn) update(); });
-
-  /* product cards elsewhere on the page */
-  Array.prototype.forEach.call(document.querySelectorAll("[data-product]"), function (a) {
-    a.addEventListener("click", function () {
-      var k = a.getAttribute("data-product"); if (!P[k]) return;
-      setVal("to-cat", P[k].cat); buildProductChips(); setVal("to-product", k); update();
-    });
-  });
-
-  /* ---------- send ---------- */
-  var form = $("send-form"), err = $("sf-error"), btn = $("sf-submit");
-
-  /* ---------- prices + Stripe ---------- */
-  var SALE = 0.25; /* 25% off everything. Set to 0 to end the sale. */
-  var PRICE = { tumbler: 30, handle: 35, bottle: 30, mug: 20, glass: 20, block: 30, ornament: 15, coasters: 30, panel: 30, tee: 25, hoodie: 45, tote: 20, apron: 25, keychain: 12, magnet: 8, phone: 25, plate: 25 };
-  /* Paste each product's Stripe Payment Link between the quotes. Leave "" to hide "Pay now" for that product. */
-  var STRIPE = {
-    tumbler: "https://buy.stripe.com/fZueV63nP2bE3cvcwDfQI00",
-    handle: "https://buy.stripe.com/14AcMY4rTdUmbJ168ffQI01",
-    bottle: "https://buy.stripe.com/00wdR2f6x9E614n68ffQI02",
-    mug: "https://buy.stripe.com/bJe7sE4rTg2u8wPgMTfQI03",
-    glass: "https://buy.stripe.com/aFaaEQ3nP03w4gzeELfQI04",
-    block: "https://buy.stripe.com/00w7sEgaB03w00jaovfQI05",
-    ornament: "https://buy.stripe.com/aFa3co7E52bEeVdgMTfQI06",
-    coasters: "https://buy.stripe.com/4gM00caQh6rU28rcwDfQI07",
-    panel: "https://buy.stripe.com/aFa6oAcYpg2uaEXcwDfQI08",
-    tee: "https://buy.stripe.com/9B600c5vX9E69ATgMTfQI09",
-    hoodie: "https://buy.stripe.com/9B66oA1fHg2u7sL0NVfQI0a",
-    tote: "https://buy.stripe.com/fZu00c5vX8A29AT68ffQI0b",
-    apron: "https://buy.stripe.com/28E7sEaQhcQieVdbszfQI0c",
-    keychain: "https://buy.stripe.com/9B65kw6A15nQ14n7cjfQI0d",
-    magnet: "https://buy.stripe.com/aFa00c5vX2bE7sLaovfQI0e",
-    phone: "https://buy.stripe.com/00w8wI6A1aIadR9dAHfQI0f",
-    plate: "https://buy.stripe.com/6oU6oAf6xg2u5kD0NVfQI0g"
-  };
-  function money(n) { return "$" + (Math.abs(n - Math.round(n)) < 0.005 ? String(Math.round(n)) : n.toFixed(2)); }
-  function priceInfo() {
-    var k = val("to-product"), reg = PRICE[k] || 0, now = Math.round(reg * (1 - SALE) * 100) / 100;
-    var q = Math.max(1, parseInt($("sf-qty").value, 10) || 1);
-    var total = now * q, bundle = k === "keychain" && q >= 3;
-    if (bundle) total = Math.floor(q / 3) * 30 * (1 - SALE) + (q % 3) * now;
-    return { reg: reg, now: now, q: q, total: Math.round(total * 100) / 100, link: bundle ? "" : (STRIPE[k] || ""), bundle: bundle };
-  }
-  function paying() { var pi = priceInfo(), r = document.querySelector('input[name="payment"]:checked'); return !!pi.link && r && r.value.indexOf("Pay now") === 0; }
-  function refreshPrice() {
-    var pi = priceInfo();
-    $("sf-now").textContent = money(pi.now);
-    $("sf-was").textContent = money(pi.reg); $("sf-was").hidden = !SALE;
-    root.querySelector(".price-tag").hidden = !SALE;
-    $("sf-each").textContent = "each" + (pi.q > 1 ? " · " + pi.q + " for " + money(pi.total) : "") + " · free local delivery on $50+";
-    var note = $("sf-pnote");
-    if (pi.bundle) { note.textContent = "Bundle price applied: keychains are 3 for " + money(30 * (1 - SALE)) + ". We'll send your payment link with the proof."; note.hidden = false; }
-    else note.hidden = true;
-    $("sf-pay").hidden = !pi.link;
-    btn.textContent = paying() ? "Send design and pay " + money(pi.total) : "Send my design";
-  }
-
-  function blobOf(canvas, type, q) { return new Promise(function (res) { canvas.toBlob(function (b) { res(b); }, type, q); }); }
-  function setFile(input, blob, name) {
-    try { var dt = new DataTransfer(); dt.items.add(new File([blob], name, { type: blob.type })); input.files = dt.files; return true; }
-    catch (e) { return false; }
-  }
-  function slug(s) { return (s || "design").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 30) || "design"; }
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    err.hidden = true;
-    var nm = $("sf-name"), em = $("sf-email");
-    if (!nm.value.trim()) { err.textContent = "Please add your name."; err.hidden = false; nm.focus(); return; }
-    if (!em.value.trim() || !em.checkValidity()) { err.textContent = "Please add a valid email so we can send your proof."; err.hidden = false; em.focus(); return; }
-    if (val("to-design") === "photo" && !photo) { err.textContent = "You picked \"My photo\" but haven't uploaded one yet. Upload it in step 2, or pick one of our designs."; err.hidden = false; return; }
-    var p = cur(), t = nameIn.value.trim(), lay = p.kind === "lathe" ? ({ front: "Front", frontback: "Design front, name back", wrap: "Full wrap" }[val("to-layout")]) : (p.orient ? (val("to-orient") === "port" ? "Portrait" : "Landscape") : "Standard");
-    $("sf-product").value = p.label;
-    $("sf-finish").value = finish().label;
-    $("sf-design").value = DESIGN_NAMES[val("to-design")] + (photoFile && val("to-design") === "photo" ? " (" + photoFile.name + ")" : "");
-    $("sf-text").value = t || "(none)";
-    $("sf-font").value = val("to-font");
-    $("sf-ink").value = val("to-ink") === "auto" ? "Auto (" + (INK_NAMES[inkColour()] || inkColour()) + ")" : (INK_NAMES[val("to-ink")] || val("to-ink"));
-    $("sf-layout").value = lay;
-    var pi = priceInfo(), payNow = paying(), d0 = new Date();
-    var ref = "SI-" + String(d0.getFullYear()).slice(2) + ("0" + (d0.getMonth() + 1)).slice(-2) + ("0" + d0.getDate()).slice(-2) + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
-    $("sf-ref").value = ref;
-    $("sf-pricefield").value = money(pi.now) + " each x " + pi.q + " = " + money(pi.total) + (SALE ? " (" + Math.round(SALE * 100) + "% off " + money(pi.reg) + ")" : "") + (payNow ? " - customer is paying by card on Stripe, check the payment for " + ref : " - send a payment link with the proof");
-    $("sf-next").value = payNow ? pi.link + (pi.link.indexOf("?") < 0 ? "?" : "&") + "client_reference_id=" + ref + "&prefilled_email=" + encodeURIComponent(em.value.trim()) : "https://spruceandink.ca/?sent=1#studio";
-    $("sf-subject").value = (payNow ? "PAYING BY CARD - " : "New design: ") + p.label + (t ? ' "' + t + '"' : "") + " from " + nm.value.trim() + " [" + ref + "]";
-    btn.disabled = true; btn.textContent = "Sending…";
-    var snap = snapshot(), jobs = [];
-    if (snap) jobs.push(blobOf(snap, "image/jpeg", 0.9).then(function (b) { if (b) setFile($("sf-file-preview"), b, "3d-preview-" + slug(p.label) + ".jpg"); }));
-    var aw = document.createElement("canvas"), sc = Math.min(1, 1600 / Math.max(art.width, art.height));
-    aw.width = Math.round(art.width * sc); aw.height = Math.round(art.height * sc); aw.getContext("2d").drawImage(art, 0, 0, aw.width, aw.height);
-    jobs.push(blobOf(aw, "image/png").then(function (b) { if (b) setFile($("sf-file-art"), b, "artwork-" + slug(p.label) + ".png"); }));
-    if (photoFile && val("to-design") === "photo") {
-      if (photoFile.size <= 4.5 * 1024 * 1024) setFile($("sf-file-photo"), photoFile, photoFile.name);
-      else {
-        var full = photo.full, s2 = Math.min(1, 3000 / Math.max(full.width, full.height)), oc = document.createElement("canvas");
-        oc.width = Math.round(full.width * s2); oc.height = Math.round(full.height * s2); oc.getContext("2d").drawImage(full, 0, 0, oc.width, oc.height);
-        jobs.push(blobOf(oc, "image/jpeg", 0.9).then(function (b) { if (b) setFile($("sf-file-photo"), b, slug(photoFile.name.replace(/\.[^.]+$/, "")) + ".jpg"); }));
-      }
-    }
-    Promise.all(jobs).then(function () { HTMLFormElement.prototype.submit.call(form); }, function () { HTMLFormElement.prototype.submit.call(form); });
-  });
-  window.addEventListener("pageshow", function () { btn.disabled = false; refreshPrice(); });
-  $("sf-qty").addEventListener("input", refreshPrice);
-  form.addEventListener("change", function (e) { if (e.target.name === "payment") refreshPrice(); });
-
-  buildProductChips();
-  update();
-  resize();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { buildArt(); if (tex) tex.needsUpdate = true; dirty = true; refreshThumb(); });
-  requestAnimationFrame(frame);
-  window.__studio = { setRot: function (r) { auto = false; target = null; vel = 0; rot = r; dirty = true; }, pick: function (k) { setVal("to-cat", P[k].cat); buildProductChips(); setVal("to-product", k); update(); } };
-})();
-</script>
+<script type="importmap">{"imports":{"three":"./js/three.module.min.js"}}</script>
+<script type="module" src="js/studio.js"></script>
 </body>
 </html>
