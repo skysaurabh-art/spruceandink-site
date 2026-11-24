@@ -15,9 +15,9 @@ const LINK = {
   tumbler40: "https://buy.stripe.com/fZu5kwgaB03w5kDbszfQI0q",
   bottle17: "https://buy.stripe.com/00w6oA9Mdg2u5kDgMTfQI0r",
   bottle25: "https://buy.stripe.com/00w8wI3nP9E66oH2W3fQI0H",
-  mug11: "https://buy.stripe.com/fZubIUbUl9E64gz0NVfQI0s",
-  mug15: "https://buy.stripe.com/4gM00c1fHdUmcN5bszfQI0I",
-  glass: "https://buy.stripe.com/3cI3cocYpg2u3cv8gnfQI0t",
+  mug11: "https://buy.stripe.com/14A4gs1fH9E63cvcwDfQI0O",
+  mug15: "https://buy.stripe.com/6oUdR2e2t8A2eVdgMTfQI0P",
+  glass: "https://buy.stripe.com/9B600c7E5eYqaEXbszfQI0Q",
   block46: "https://buy.stripe.com/8x200c8I9aIa14n1RZfQI0J",
   block57: "https://buy.stripe.com/fZu9AMf6xeYqaEX9krfQI0u",
   block810: "https://buy.stripe.com/eVq9AMgaB8A2dR9fIPfQI0K",
@@ -26,8 +26,8 @@ const LINK = {
   coasters6: "https://buy.stripe.com/bJedR2cYp6rU28r54bfQI0L",
   panel68: "https://buy.stripe.com/3cI8wI0bD3fI14n9krfQI0x",
   panel810: "https://buy.stripe.com/00wfZa5vXaIaeVdcwDfQI0M",
-  tee: "https://buy.stripe.com/9B6dR2aQh7vYcN5gMTfQI0y",
-  hoodie: "https://buy.stripe.com/fZu4gs8I95nQ00jbszfQI0z",
+  tee: "https://buy.stripe.com/9B6cMY9MdcQifZh7cjfQI0R",
+  hoodie: "https://buy.stripe.com/3cI3co4rT03w14ndAHfQI0S",
   tote: "https://buy.stripe.com/8x214g5vXcQi9AT2W3fQI0A",
   apron: "https://buy.stripe.com/28E9AMgaBeYq6oHbszfQI0B",
   keychain: "https://buy.stripe.com/cNi8wI6A15nQ14ngMTfQI0C",
@@ -97,10 +97,10 @@ const P = {
   mug: {
     cat: "drink", label: "Mug", kind: "lathe", fin: ["gwhite", "gblack"], def: "gwhite", covers: ["wrap", "front", "frontback"],
     sizes: [
-      { id: "11oz", label: "11oz", price: 20, link: "mug11", g: {
+      { id: "11oz", label: "11oz", price: 16, link: "mug11", g: {
         body: [[0, 0], [1.4, 0], [1.52, 0.05], [1.58, 0.2], [1.6, 0.4], [1.62, 3.75], [1.6, 3.83], [1.53, 3.83], [1.5, 3.72], [1.47, 0.45], [1.3, 0.3], [0, 0.28]], zone: [0.45, 3.45],
         handle: { pts: [[1.58, 3.2], [2.3, 3.15], [2.62, 2.6], [2.55, 1.5], [2.25, 0.95], [1.58, 0.85]], r: 0.2 }, gap: 0.1, panel: 0.3 } },
-      { id: "15oz", label: "15oz", price: 23, link: "mug15", g: {
+      { id: "15oz", label: "15oz", price: 18.4, link: "mug15", g: {
         body: [[0, 0], [1.6, 0], [1.72, 0.05], [1.78, 0.2], [1.8, 0.4], [1.82, 4.45], [1.8, 4.53], [1.72, 4.53], [1.69, 4.42], [1.66, 0.45], [1.48, 0.3], [0, 0.28]], zone: [0.5, 4.1],
         handle: { pts: [[1.78, 3.8], [2.55, 3.75], [2.9, 3.1], [2.82, 1.8], [2.5, 1.1], [1.78, 1.0]], r: 0.22 }, gap: 0.1, panel: 0.3 } }
     ]
@@ -108,7 +108,7 @@ const P = {
   glass: {
     cat: "drink", label: "Wine glass", kind: "lathe", fin: ["glass"], def: "glass", covers: ["wrap", "front", "frontback"],
     sizes: [
-      { id: "15oz", label: "15oz stemless", price: 20, link: "glass", g: {
+      { id: "15oz", label: "15oz stemless", price: 16, link: "glass", g: {
         body: [[0, 0], [0.95, 0], [1.08, 0.08], [1.2, 0.4], [1.55, 1.2], [1.78, 2.2], [1.8, 3.0], [1.68, 4.0], [1.55, 4.6], [1.5, 4.62], [1.62, 4.0], [1.73, 3.0], [1.71, 2.2], [1.48, 1.2], [1.1, 0.5], [0, 0.42]], zone: [1.25, 3.55], panel: 0.34 } }
     ]
   },
@@ -131,11 +131,11 @@ const P = {
   },
   tee: {
     cat: "wear", label: "T-shirt", kind: "cloth", fin: ["fwhite", "fblack", "heather", "fnavy", "fsage", "fred"], def: "fwhite", wear: true, covers: ["front", "chest", "back", "frontback"],
-    sizes: [{ id: "std", label: "Unisex tee", price: 25, link: "tee" }], shape: "tee", print: [-6, -6.5, 12, 13.5]
+    sizes: [{ id: "std", label: "Unisex tee", price: 20, link: "tee" }], shape: "tee", print: [-6, -6.5, 12, 13.5]
   },
   hoodie: {
     cat: "wear", label: "Hoodie", kind: "cloth", fin: ["fblack", "heather", "fnavy", "fsage", "fwhite"], def: "heather", wear: true, covers: ["front", "chest", "back", "frontback"],
-    sizes: [{ id: "std", label: "Pullover hoodie", price: 45, link: "hoodie" }], shape: "hoodie", print: [-5.8, -3.6, 11.6, 11]
+    sizes: [{ id: "std", label: "Pullover hoodie", price: 36, link: "hoodie" }], shape: "hoodie", print: [-5.8, -3.6, 11.6, 11]
   },
   tote: {
     cat: "wear", label: "Tote bag", kind: "cloth", fin: ["natural", "fblack"], def: "natural", covers: ["front", "both"],
