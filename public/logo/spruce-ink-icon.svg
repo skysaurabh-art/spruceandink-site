@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 104" width="1000" height="1040">
+  <title>Spruce &amp; Ink icon</title>
+  <path d="M50 4 L66 30 H58.5 L77 56 H67.5 L91 87 H9 L32.5 56 H23 L41.5 30 H34 Z" fill="#1E6B4F"/>
+  <line x1="50" y1="30" x2="50" y2="54" stroke="#FFFFFF" stroke-width="3.4"/>
+  <line x1="30" y1="67" x2="37" y2="67" stroke="#FFFFFF" stroke-width="3.4"/>
+  <line x1="63" y1="67" x2="70" y2="67" stroke="#FFFFFF" stroke-width="3.4"/>
+  <circle cx="50" cy="67" r="15" fill="#FFFFFF"/>
+  <path d="M50 56.5 C50 56.5 43 65 43 70 A7 7 0 0 0 57 70 C57 65 50 56.5 50 56.5 Z" fill="#23395D"/>
+  <rect x="48.3" y="82" width="3.4" height="20" fill="#23395D"/>
+</svg>
